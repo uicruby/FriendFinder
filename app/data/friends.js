@@ -1,4 +1,4 @@
-var friends = [
+let friends = [
     {
       "name":"Chuck Norris",
       "photo":"https://static.comicvine.com/uploads/original/3/31265/1550715-chuck_norris_2.jpg",
@@ -6,11 +6,6 @@ var friends = [
           5,
           1,
           4,
-          4,
-          3,
-          4,
-          5,
-          3,
           4,
           3
         ] 
@@ -23,12 +18,7 @@ var friends = [
           2,
           5,
           1,
-          2,
-          4,
-          2,
-          5,
-          4,
-          3
+          2
         ]
     },
     {
@@ -39,12 +29,7 @@ var friends = [
           3,
           4,
           4,
-          3,
-          3,
-          2,
-          5,
-          1,
-          2
+          3
         ]
     },
     {
@@ -55,12 +40,7 @@ var friends = [
           5,
           5,
           5,
-          4,
-          2,
-          3,
-          4,
-          4,
-          3
+          4
         ]
     },
     {
@@ -71,12 +51,7 @@ var friends = [
           3,
           4,
           5,
-          1,
-          5,
-          5,
-          5,
-          5,
-          4
+          1
         ]
     },
     {
@@ -87,14 +62,12 @@ var friends = [
           2,
           3,
           1,
-          4,
-          2,
-          3,
-          4,
-          5,
-          1
+          4
         ]
     }
     ];
     
     module.exports = friends;
+    
+    
+    

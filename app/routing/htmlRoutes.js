@@ -11,7 +11,6 @@ module.exports = (app) => {
 		res.sendFile('survey.html', { root: './app/public' });
 	})
 
-
 	app.get('/logic.js', (req,res) => {
 		// res.sendFile(path.join(__dirname, 'survey.html'));
 		res.sendFile('logic.js', { root: './' });

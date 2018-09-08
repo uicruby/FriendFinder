@@ -1,11 +1,9 @@
-
 let newUser = {};
 let bestFriend = {
 	diff: 100,
 	name: "",
 	image: ""
 };
-
 
 $('#submit').on('click', () => {
 	let userName = $('#name').val().trim();
@@ -21,9 +19,11 @@ $('#submit').on('click', () => {
 	let ans9 = $('#quest9').val().trim();
 	let ans10 = $('#quest10').val().trim();
 
-	if (userName === "" || imag === "" || ans1 === "" || ans2 === "" || ans3 === "" || ans4 === "" || ans5 === "") {
-		alert("Please fill in all fields");
-	}
+// if any field is empty
+	if (userName === "" || imag === "" || ans1 === "" || ans2 === "" || ans3 === "" || ans4 === "" || ans5 === "" || ans6 == "" || ans7 == ""|| ans8 == ""|| ans9 == ""|| ans10 == "") {
+		alert("Please fill in all fields");	
+	} 
+	// alert("working");
 	else {
 		newUser = {
 			name: userName,
@@ -36,7 +36,7 @@ $('#submit').on('click', () => {
 		setTimeout(postData, 1500);
 
 		function postData() {
-			$.post({ url: '/api/friends', contentType: 'application/json' },JSON.stringify(newUser));
+			$.post({url: '/api/friends', contentType: 'application/json'}, JSON.stringify(newUser));
 		}
 
 		$('#name').val("");
@@ -54,24 +54,48 @@ $('#submit').on('click', () => {
 	}
 });
 
+
 function findFriend(scores) {
+
 	$.get('/api/friends', (friends) => {
-		var count = 0;
-		var arrayLength = friends.length;
-		for (var i = 0; i <= arrayLength; i++) {
+
+		let count = 0;
+		let arrayLength = friends.length;
+
+		for (var i = 0; i < arrayLength; i++) {
 			calcScoreDiff(scores, friends[i]);
-			count++
-		}
-		if(count==arrayLength){
-			$("#match-name").text(data.name);
-          $("#match-img").attr("src", data.photo);
+			count++;		
+		}		
 
-          // Show the modal with the best match
-          $("#results-modal").modal("toggle");
-			// $('#friendName').text(bestFriend.name);
-			// $('#friendImg').attr('src', bestFriend.image);
-			// $('#myModal').modal('toggle');
+		if (count === arrayLength) {
+			$('#friendName').text(bestFriend.name);
+			$('#friendImg').attr('src', bestFriend.image);
+			$('#myModal').modal('toggle');
 		}
-	});
-
+	});	
 }
+
+
+function calcScoreDiff(user, friend) {
+
+	let diff = 0;
+	let count = 0;
+
+	for (var i = 0; i < 5; i++) {
+		diff += Math.abs(user[i] - friend.scores[i]);
+		count++;
+	}
+
+	if (count === 5) {
+		if (diff < bestFriend.diff) {
+			bestFriend.diff = diff;
+			bestFriend.name = friend.name;
+			bestFriend.image = friend.photo;
+		} else {
+			return;
+		}
+	}  	
+}
+
+
+

@@ -8,4 +8,4 @@ module.exports = (app) => {
 	app.post('/api/friends', (req, res) => {
 		friends.push(req.body);
 	})
-};
+};	
